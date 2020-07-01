@@ -19,24 +19,25 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-      
-     - name: Setup Node.js environment
+
+    - name: Setup Node.js environment
       uses: actions/setup-node@v2-beta
-      with:
+      with: 
         version: 12
-    
+        
     - name: GitHub Action for Yarn
       uses: Borales/actions-yarn@v2.1.0
-       with:
-         cmd:install
-    # Yarn command
+      with:
+        # Yarn command
+        cmd: install # npm install/ yarn install
     
-    - name: creating build
-     run: yarn build
-      
-    -name: installing surge
-     run: npm intall -g surge
-     
-     -name: deploying on surge
+    - name: Creating build
+      run: yarn build
+    
+    - name: installing surge  
+      run: npm install -g surge
+    
+    - name: deploying on surge
       run: surge ./build http://tiny-mind.surge.sh/ --token ${{secrets.surge_token}}
-   
+    
+    
